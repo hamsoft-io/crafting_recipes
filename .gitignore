@@ -59,3 +59,6 @@ build-iPhoneSimulator/
 # Sensitive data which must be passed onto CI/CD providers (GitHub secrets)
 .circleci/env.original
 .circleci/env.decrypted
+
+# VSCode
+.vscode
