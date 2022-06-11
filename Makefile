@@ -35,6 +35,10 @@ image: version-check
 	@echo 'Done.'
 	@docker images --format '{{.Repository}}:{{.Tag}}\t\t Built: {{.CreatedSince}}\t\tSize: {{.Size}}' | grep ${IMAGE_NAME}:${VERSION}
 
+.PHONY: run
+run:
+	@docker run ${HUB_NAMESPACE}/${IMAGE_NAME}:${VERSION}
+
 .PHONY: push
 push: clean-image image
 	@docker push ${HUB_NAMESPACE}/${IMAGE_NAME}:${VERSION}
