@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'bowling'
 
 RSpec.describe Bowling, '#score' do
