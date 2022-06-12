@@ -10,3 +10,6 @@ Docker image build:
 
 Docker run (build image first):
     make run
+
+Example usage (not implemented yet):
+    ruby craft_items.rb
