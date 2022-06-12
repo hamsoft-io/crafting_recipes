@@ -3,28 +3,39 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@1.8.0
 
+references:
+  default_ruby_version: &default_ruby_version 3.1.2
+
+executors:
+  default:
+    parameters:
+      ruby_tag:
+        description: "The `circleci/ruby` Docker image version tag."
+        type: string
+        default: *default_ruby_version
+    docker:
+      - image: circleci/ruby:<< parameters.ruby_tag >>
+
 jobs:
   build:
-    docker:
-      - image: cimg/ruby:3.1.2
-    executor: ruby/default
+    executor: default
     steps:
       - checkout
-      - run: echo "Ruby code checked out."
-      - run: echo "Bundler installing..."
-      - ruby/install-deps
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - ruby/bundle-install
   test:
-    docker:
-      - image: cimg/ruby:3.1.2
     parallelism: 3
+    executor: default
     steps:
       - checkout
-      - ruby/install-deps
-      - run: echo "Testing..."
+      - ruby/bundle-install
       - run:
             name: Run the Program
             command: ruby lib/main.rb
-      - ruby/rspec-test
+      - ruby/test
 
 workflows:
   version: 2
