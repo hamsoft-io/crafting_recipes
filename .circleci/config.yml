@@ -21,9 +21,13 @@ jobs:
       - checkout
       - ruby/install-deps
       - run: echo "Testing..."
+      - run:
+            name: Run the Program
+            command: ruby lib/main.rb
       - ruby/rspec-test
 
 workflows:
+  version: 2
   build_and_test:
     jobs:
       - build
