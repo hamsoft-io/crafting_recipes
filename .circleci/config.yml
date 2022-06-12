@@ -11,11 +11,14 @@ jobs:
     steps:
       - checkout
       - run: echo "Ruby code checked out."
+      - run: echo "Bundler installing..."
+      - ruby/install-deps
   test:
     docker:
       - image: cimg/ruby:3.1.2
     steps:
       - run: echo "Testing..."
+      - ruby/rspec-test
 
 
 # Invoke jobs via workflows
