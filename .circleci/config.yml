@@ -32,10 +32,12 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
+      - run: mkdir ~/rspec
       - run:
-            name: Run the Program
-            command: ruby lib/main.rb
-      - ruby/rspec-test
+          command: bundle exec rspec --format progress --format RspecJunitFormatter -o ~/rspec/rspec.xml
+          when: always
+      - store_test_results:
+          path: ~/rspec
 
 workflows:
   version: 2
