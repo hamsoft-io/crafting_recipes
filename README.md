@@ -1,5 +1,5 @@
 # crafting_recipes
-[![Crafting Recipes]https://circleci.com/gh/hamsoft-io/crafting_recipes.svg?style=svg)](https://app.circleci.com/pipelines/github/hamsoft-io/crafting_recipes)
+[![Crafting Recipes](https://circleci.com/gh/hamsoft-io/crafting_recipes.svg?style=svg)](https://app.circleci.com/pipelines/github/hamsoft-io/crafting_recipes)
 
 A simple CLI tool that creates crafting jobs
 
