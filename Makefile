@@ -9,7 +9,7 @@ APP_NAME = "crafting-recipes"
 HUB_NAMESPACE = "hamsoft"
 
 # location of Dockerfiles
-DOCKER_FILE_DIR = "dockerfiles"
+DOCKER_FILE_DIR = "."
 DOCKERFILE = "${DOCKER_FILE_DIR}/Dockerfile"
 
 IMAGE_NAME = "${APP_NAME}"
@@ -44,10 +44,22 @@ push: clean-image image
 	@docker push ${HUB_NAMESPACE}/${IMAGE_NAME}:${VERSION}
 	@docker push ${HUB_NAMESPACE}/${IMAGE_NAME}:latest
 
+
 #################################
 # test targets
 #################################
 
+.PHONY: build
+build: version-check
+	@bundle install
+
+.PHONY: test
+test: build
+	@ruby bin/rspec
+
+.PHONY: lint
+lint: build
+	@ruby bin/rubocop lib
 #################################
 # Utilities
 #################################
