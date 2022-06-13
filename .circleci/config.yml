@@ -25,17 +25,17 @@ jobs:
       - run:
           name: Which bundler?
           command: bundle -v
-      - ruby/bundle-install
+      - ruby/install-deps
   test:
     parallelism: 3
     executor: default
     steps:
       - checkout
-      - ruby/bundle-install
+      - ruby/install-deps
       - run:
             name: Run the Program
             command: ruby lib/main.rb
-      - ruby/test
+      - ruby/rspec-test
 
 workflows:
   version: 2
